@@ -1,10 +1,15 @@
 # STM32F411CEU6 Project 
+
 ![Picture_Project](https://github.com/mateuszpiwowarski/Control_Ebike_Version_1_0/blob/main/ControlEbikeF4.jpg)
+
 <p align="center">
+  Watch Video
+  <br>
   <a href="https://www.youtube.com/watch?v=HOc9d3G9ufM">
     <img src="https://img.youtube.com/vi/HOc9d3G9ufM/3.jpg" alt="Watch the video on YouTube" width="500"/>
   </a>
 </p>
+
 ## This project is based on the STM32F411CEU6 microcontroller, which uses various peripherals such as:
 
 * SSD1306 OLED_display
