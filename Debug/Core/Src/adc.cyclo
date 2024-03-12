@@ -1,0 +1,8 @@
+../Core/Src/adc.c:28:7:ADC_Select_CH3	2
+../Core/Src/adc.c:40:7:ADC_Select_CH4	2
+../Core/Src/adc.c:55:7:ADC_Select_CH5	2
+../Core/Src/adc.c:69:7:ADC_Select_CH8	2
+../Core/Src/adc.c:84:7:ADC_Select_CH9	2
+../Core/Src/adc.c:102:6:MX_ADC1_Init	7
+../Core/Src/adc.c:185:6:HAL_ADC_MspInit	2
+../Core/Src/adc.c:222:6:HAL_ADC_MspDeInit	2
