@@ -38,11 +38,3 @@ void NTC10K_Get_Temp(float *Ntc_Tmp)
   *Ntc_Tmp = (1.0 / inverseT) - 273.15;
 }
 
-//void HAL_TIM_PeriodElapseedCallback(TIM_HandleTypeDef *htim)
-//{
-//	if(htim->Instance == TIM4)
-//	{
-//		/*set evety 100ms */
-//		Sch_100ms = 255;
-//	}
-//}

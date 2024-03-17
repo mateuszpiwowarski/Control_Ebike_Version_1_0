@@ -18,5 +18,5 @@
 void Throttle_Get_ADC_Value(ADC_HandleTypeDef* hadc, uint32_t* adc_val);
 void Throttle_Get_Average_Voltage(ADC_HandleTypeDef* hadc, float* averageVoltage);
 void Throttle_Get_Voltage(ADC_HandleTypeDef* hadc, float* outputVoltage);
-
+void Throttle_Control_PWM(ADC_HandleTypeDef* hadc, TIM_HandleTypeDef* htim, uint32_t channel);
 #endif /* INC_THROTTLEADC_H_ */

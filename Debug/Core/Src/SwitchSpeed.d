@@ -1,4 +1,4 @@
-Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
+Core/Src/SwitchSpeed.o: ../Core/Src/SwitchSpeed.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -32,16 +32,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/Inc/adc.h ../Core/Inc/main.h ../Core/Inc/i2c.h ../Core/Inc/tim.h \
- ../Core/Inc/usart.h ../Core/Inc/gpio.h ../Core/Inc/acs758.h \
- ../Core/Inc/adc.h ../Core/Inc/Battery.h ../Core/Inc/buttons.h \
- ../Core/Inc/ds18B20.h ../Core/Inc/onewire.h ../Core/Inc/gpio.h \
- ../Core/Inc/ssd1306_conf.h ../Core/Inc/ssd1306_tests.h \
- ../Core/Inc/ssd1306_fonts.h ../Core/Inc/ssd1306_conf.h \
- ../Core/Inc/ssd1306.h ../Core/Inc/ssd1306_fonts.h ../Core/Inc/gps_neo6.h \
- ../Core/Inc/hall.h ../Core/Inc/MCP4725.h ../Core/Inc/onewire.h \
- ../Core/Inc/pid.h ../Core/Inc/ThrottleADC.h ../Core/Inc/page.h \
- ../Core/Inc/lm35.h ../Core/Inc/ntc10k.h ../Core/Inc/SwitchSpeed.h
+ ../Core/Inc/tim.h ../Core/Inc/main.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -76,32 +67,5 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
-../Core/Inc/adc.h:
-../Core/Inc/main.h:
-../Core/Inc/i2c.h:
 ../Core/Inc/tim.h:
-../Core/Inc/usart.h:
-../Core/Inc/gpio.h:
-../Core/Inc/acs758.h:
-../Core/Inc/adc.h:
-../Core/Inc/Battery.h:
-../Core/Inc/buttons.h:
-../Core/Inc/ds18B20.h:
-../Core/Inc/onewire.h:
-../Core/Inc/gpio.h:
-../Core/Inc/ssd1306_conf.h:
-../Core/Inc/ssd1306_tests.h:
-../Core/Inc/ssd1306_fonts.h:
-../Core/Inc/ssd1306_conf.h:
-../Core/Inc/ssd1306.h:
-../Core/Inc/ssd1306_fonts.h:
-../Core/Inc/gps_neo6.h:
-../Core/Inc/hall.h:
-../Core/Inc/MCP4725.h:
-../Core/Inc/onewire.h:
-../Core/Inc/pid.h:
-../Core/Inc/ThrottleADC.h:
-../Core/Inc/page.h:
-../Core/Inc/lm35.h:
-../Core/Inc/ntc10k.h:
-../Core/Inc/SwitchSpeed.h:
+../Core/Inc/main.h:

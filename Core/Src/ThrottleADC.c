@@ -36,3 +36,14 @@ void Throttle_Get_Average_Voltage(ADC_HandleTypeDef* hadc, float* averageVoltage
     }
     *averageVoltage = sum_voltage / NUM_SAMPLES;
 }
+
+void Throttle_Control_PWM(ADC_HandleTypeDef* hadc, TIM_HandleTypeDef* htim, uint32_t channel)
+{
+    float throttle_avg_voltage;
+    Throttle_Get_Average_Voltage(hadc, &throttle_avg_voltage);
+
+    uint8_t pwm_value = (uint8_t)((throttle_avg_voltage - VMIN) / (VMAX - VMIN) * 100);
+
+    HAL_TIM_PWM_Start(htim, channel);
+    __HAL_TIM_SET_COMPARE(htim, channel, 100 - pwm_value);
+}

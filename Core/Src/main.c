@@ -43,6 +43,7 @@
 #include "page.h"
 #include "lm35.h"
 #include "ntc10k.h"
+#include "SwitchSpeed.h"
 
 #include "stdint.h"
 #include "stdio.h"
@@ -68,6 +69,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+
 ///// NTC10K ////
 uint16_t ADC_Raw;
 float Ntc_Tmp;
@@ -196,10 +198,6 @@ int main(void)
   ACS7XX_Init_Default(&Serch);
 
 ////////////////////////////// Throttle  //////
-	/* Initialize I2C */
-  I2C_HandleTypeDef hi2c;
-	// Init the structure according to your controller settings
-
 	/* Initialize DAC */
   myDAC = MCP4725_init(&hi2c2, MCP4725A0_ADDR_A00, MCP4725_REFERENCE_VOLTAGE);
 
@@ -215,6 +213,7 @@ int main(void)
 
 ///////////////////////////// HALLSPEED /////
   HAL_TIM_IC_START();
+//  IC_Capture_Callback(&htim2);
 
 ///////////////////////////// SSD1306 /////
   ssd1306_Init();
@@ -230,7 +229,6 @@ int main(void)
 ///////////////////////////////// PWM /////
 
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
-  __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, 80);
 
 /////////////////////////////// DELAY ////
   uint32_t DS18B20_delay = 0;
@@ -244,7 +242,6 @@ int main(void)
   uint32_t LM35_delay = 0;
   uint32_t NEO6_delay = 0;
   uint32_t NTC10K_delay = 0;
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -267,6 +264,11 @@ int main(void)
 	 DS18B20_delay = HAL_GetTick();
 	}
 
+
+////////////////////////////////// PWM THROTTLE////////////
+	Throttle_Control_PWM( &hadc1, &htim3, TIM_CHANNEL_2);
+
+
 //////////////////////////////////////NTC10K /////////
 	if((HAL_GetTick() - NTC10K_delay) > 150)
 	{
@@ -278,24 +280,23 @@ int main(void)
 	    }
 	  NTC10K_delay = HAL_GetTick();
 	}
+
 //////////////////////////////////////HALLSPEED /////
 // Check if TIMEOUT has passed since last pulse check
-		if (HAL_GetTick() - lastPulseCheckTime >= TIMEOUT)
+	if (HAL_GetTick() - lastPulseCheckTime >= TIMEOUT)
+	{
+		// If the last pulse was more than TIMEOUT milliseconds ago
+		if (HAL_GetTick() - lastImpulseTime >= TIMEOUT)
 		{
-		  // If the last pulse was more than TIMEOUT milliseconds ago
-		  if (HAL_GetTick() - lastImpulseTime >= TIMEOUT)
-		  {
-		     // reset speed, rotational_speed and pulseCounter
-		    pulseCounter = 0;
-		    speed = 0;
-		    rotational_speed = 0;
-		  }
-
-		  // Update the last pulse check time
-		  lastPulseCheckTime = HAL_GetTick();
+		  // reset speed, rotational_speed and pulseCounter
+			pulseCounter = 0;
+			speed = 0;
+			rotational_speed = 0;
 		}
 
-
+		// Update the last pulse check time
+		lastPulseCheckTime = HAL_GetTick();
+	}
 ////////////////////////////////////////// LM35 ///////
 	if((HAL_GetTick() - LM35_delay) > 200)
 	{
@@ -349,16 +350,7 @@ int main(void)
 	if((HAL_GetTick() - NEO6_delay) > 100)
 	{
 	  NEO6_Task(&GpsState);
-	  GpsState.SatelitesNumber;
-	  GpsState.Day;
-	  GpsState.Month;
-	  GpsState.Year;
-	  GpsState.Hour;
-	  GpsState.Minute;
-	  GpsState.Second;
-	  GpsState.SpeedKilometers;
-	  GpsState.Latitude;
-	  GpsState.Longitude;
+
   	  NEO6_delay = HAL_GetTick();
 	}
 ////////////////////////////////////////////// SSD1306  ////
@@ -660,23 +652,23 @@ void renderPage3(char* buffer){
     sprintf(displayBuffer, "Speed: %.2f km/h", GpsState.SpeedKilometers);
     ssd1306_WriteString(displayBuffer, Font_6x8, White);
 
-//    // Display GPS Latitude and Longitude
-//    ssd1306_SetCursor(2, 45);
-//    sprintf(displayBuffer, "Lat: %f", GpsState.Latitude);
-//    ssd1306_WriteString(displayBuffer, Font_6x8, White);
-//
-//    ssd1306_SetCursor(2, 54);
-//    sprintf(displayBuffer, "Long: %f",GpsState.Longitude);
-//    ssd1306_WriteString(displayBuffer, Font_6x8, White);
-
     // Display GPS Latitude and Longitude
     ssd1306_SetCursor(2, 45);
-    sprintf(displayBuffer, "Lat: **.******");
+    sprintf(displayBuffer, "Lat: %f", GpsState.Latitude);
     ssd1306_WriteString(displayBuffer, Font_6x8, White);
 
     ssd1306_SetCursor(2, 54);
-    sprintf(displayBuffer, "Long: **.****** ");
+    sprintf(displayBuffer, "Long: %f",GpsState.Longitude);
     ssd1306_WriteString(displayBuffer, Font_6x8, White);
+//
+//    // Display GPS Latitude and Longitude
+//    ssd1306_SetCursor(2, 45);
+//    sprintf(displayBuffer, "Lat: **.******");
+//    ssd1306_WriteString(displayBuffer, Font_6x8, White);
+//
+//    ssd1306_SetCursor(2, 54);
+//    sprintf(displayBuffer, "Long: **.****** ");
+//    ssd1306_WriteString(displayBuffer, Font_6x8, White);
 }
 
 void renderPage4(char* buffer){

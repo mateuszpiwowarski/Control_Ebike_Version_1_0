@@ -1,3 +1,4 @@
 ../Core/Src/ThrottleADC.c:12:6:Throttle_Get_ADC_Value	1
 ../Core/Src/ThrottleADC.c:21:6:Throttle_Get_Voltage	1
 ../Core/Src/ThrottleADC.c:28:6:Throttle_Get_Average_Voltage	2
+../Core/Src/ThrottleADC.c:40:6:Throttle_Control_PWM	4

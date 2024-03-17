@@ -62,6 +62,8 @@ void Error_Handler(void);
 #define DS18B20_Pin_Pin GPIO_PIN_0
 #define DS18B20_Pin_GPIO_Port GPIOA
 #define DS18B20_Pin_EXTI_IRQn EXTI0_IRQn
+#define GPIO_EXTI1_Pin GPIO_PIN_1
+#define GPIO_EXTI1_GPIO_Port GPIOA
 #define ADC1_IN3_Pin GPIO_PIN_3
 #define ADC1_IN3_GPIO_Port GPIOA
 #define ADC1_IN4_Pin GPIO_PIN_4
