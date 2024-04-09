@@ -20,4 +20,4 @@
 * GPS NEO-6M
 * MCP4725 DAC (Digital Analogue Converter)
 * 3x BUTTONS (To operate the SSD1306)
-## The project will be used to manage a bicycle controller that regulates maximum power and speed by measuring current, voltage, throttle deflection, speed and using a PID regulator. There will be 3 types of temperature sensors to choose from.
+## The project will be used to manage a bicycle controller that regulates maximum power and speed by measuring current, voltage, throttle deflection and speed, by PID regulator. There will be 3 types of temperature sensors to choose from.
